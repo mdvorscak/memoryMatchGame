@@ -12,7 +12,7 @@ export default {
     return {};
   },
   components: {
-    board: Board
+    Board
   }
 };
 </script>
