@@ -7,4 +7,8 @@ describe('Game.vue', () => {
     const wrapper = mount(Game);
     expect(wrapper.findAll(Board).length).to.equal(1);
   });
+  it('render it\'s wrapper', () => {
+    const wrapper = mount(Game);
+    expect(wrapper.contains('#game')).to.equal(true);
+  });
 });
