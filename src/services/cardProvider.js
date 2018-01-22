@@ -13,6 +13,6 @@ const cardPool = [{ id: 1, url: require('../assets/cards/memes/ancient-alien-guy
   { id: 12, url: require('../assets/cards/memes/winter-is-coming.jpg') }];
 
 export default function getCards(numberOfCards) {
-  return cardPool.filter((elm, index) => index <= numberOfCards);
+  return cardPool.filter((elm, index) => index < numberOfCards);
 }
 /* eslint-enable global-require */
