@@ -108,6 +108,7 @@ export default {
     },
     incorrectMatch: async function correctMatch(id) {
       this.currentMessage = 'Try again';
+      this.matchFound = false;
       this.clickingLocked = true;
       await delay(1000);
       // flip both cards back down
