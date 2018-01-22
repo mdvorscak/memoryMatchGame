@@ -1,7 +1,7 @@
 <template>
   <div id="game">
       <h2 class="messageBanner" v-text="currentMessage" v-bind:class="{ matchFound }"></h2>
-      <timer />
+      <timer :running="!gameOver"/>
       <div id="board">
         <card v-for="card in cards" :key="card.id" :id="card.id" v-on:flip="flipCard" :matched="card.matched" :flipped="card.flipped" :image="card.image" />
       </div>
@@ -42,7 +42,8 @@ export default {
       currentlyFlipped: -1,
       currentMessage: 'Click a card to begin',
       clickingLocked: false,
-      matches: 0
+      matches: 0,
+      gameOver: false
     };
   },
   created() {
@@ -105,6 +106,7 @@ export default {
     },
     endGame() {
       this.currentMessage = 'Congrats, you won!';
+      this.gameOver = true;
     },
     incorrectMatch: async function correctMatch(id) {
       this.currentMessage = 'Try again';

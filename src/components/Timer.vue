@@ -7,6 +7,18 @@
 <script>
 
 export default {
+  props: {
+    running: {
+      type: Boolean,
+      required: true
+    }
+  },
+  watch: {
+    running(newVal) {
+      const toggle = newVal ? this.start : this.stop;
+      toggle();
+    }
+  },
   data() {
     return {
       minutes: 0,
@@ -16,14 +28,22 @@ export default {
     };
   },
   mounted() {
-    this.startTime = Date.now();
+    this.start();
+  },
+  methods: {
+    start() {
+      this.startTime = Date.now();
 
-    this.intervalHandler = setInterval(() => {
-      const now = Date.now();
-      const secondDiff = Math.floor((now - this.startTime) / 1000);
-      this.seconds = secondDiff % 60;
-      this.minutes = Math.floor(secondDiff / 60) % 60;
-    }, 1000);
+      this.intervalHandler = setInterval(() => {
+        const now = Date.now();
+        const secondDiff = Math.floor((now - this.startTime) / 1000);
+        this.seconds = secondDiff % 60;
+        this.minutes = Math.floor(secondDiff / 60) % 60;
+      }, 1000);
+    },
+    stop() {
+      clearInterval(this.intervalHandler);
+    }
   },
   filters: {
     formatTime(value) {
