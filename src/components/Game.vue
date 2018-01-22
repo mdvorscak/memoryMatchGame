@@ -39,7 +39,8 @@ export default {
       flippingActive: false,
       currentlyFlipped: -1,
       currentMessage: 'Click a card to begin',
-      clickingLocked: false
+      clickingLocked: false,
+      matches: 0
     };
   },
   created() {
@@ -94,6 +95,13 @@ export default {
       this.$set(this.cards, this.currentlyFlipped, this.cards[this.currentlyFlipped]);
       this.matchFound = true;
       this.resetCards();
+      this.matches += 1;
+      if (this.matches === this.cardDataModels.length) {
+        this.endGame();
+      }
+    },
+    endGame() {
+      this.currentMessage = 'Congrats, you won!';
     },
     incorrectMatch: async function correctMatch(id) {
       this.currentMessage = 'Try again';
