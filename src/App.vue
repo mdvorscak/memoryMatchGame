@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <game />
+    <game :numberOfCards="12" :numberOfMatches="2"/>
   </div>
 </template>
 
