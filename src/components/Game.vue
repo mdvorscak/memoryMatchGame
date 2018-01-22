@@ -1,6 +1,7 @@
 <template>
   <div id="game">
       <h2 class="messageBanner" v-text="currentMessage" v-bind:class="{ matchFound }"></h2>
+      <timer />
       <div id="board">
         <card v-for="card in cards" :key="card.id" :id="card.id" v-on:flip="flipCard" :matched="card.matched" :flipped="card.flipped" :image="card.image" />
       </div>
@@ -11,6 +12,7 @@
 import shuffle from 'shuffle-array';
 import delay from 'delay';
 import Card from '@/components/Card';
+import Timer from '@/components/Timer';
 import cardProvider from '@/services/cardProvider';
 
 export default {
@@ -67,7 +69,8 @@ export default {
     }
   },
   components: {
-    Card
+    Card,
+    Timer
   },
   methods: {
     flipCard: function flipCard(id) {
@@ -127,7 +130,7 @@ export default {
 </script>
 
 <style>
-#board{
+#game{
   margin: 0 auto;
   width: 732px; /** 6 * (Card width + card margin + border size (2)) **/
 }
