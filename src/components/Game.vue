@@ -1,14 +1,15 @@
 <template>
   <div id="game">
-      <h2 class="messageBanner" v-text="currentMessage"></h2>
+      <h2 class="messageBanner" v-text="currentMessage" v-bind:class="{ matchFound }"></h2>
       <div id="board">
-        <card v-for="card in cards" :key="card.id" :id="card.id" v-on:flip="flipCard" :matched="card.matched" :flipped="card.flipped" />
+        <card v-for="card in cards" :key="card.id" :id="card.id" v-on:flip="flipCard" :matched="card.matched" :flipped="card.flipped" :image="card.image" />
       </div>
   </div>
 </template>
 
 <script>
 import shuffle from 'shuffle-array';
+import delay from 'delay';
 import Card from '@/components/Card';
 import cardProvider from '@/services/cardProvider';
 
@@ -37,7 +38,8 @@ export default {
       matchFound: false,
       flippingActive: false,
       currentlyFlipped: -1,
-      currentMessage: 'Click a card to begin'
+      currentMessage: 'Click a card to begin',
+      clickingLocked: false
     };
   },
   created() {
@@ -68,8 +70,10 @@ export default {
   },
   methods: {
     flipCard: function flipCard(id) {
-      // Vue.set(this.cards, id, this.cards[id].flipped = true);
+      if (this.clickingLocked) return;
       this.cards[id].flipped = true;
+      const currentModel = this.cardDataModels.find(model => this.cardMap.get(id) === model.id);
+      this.cards[id].image = currentModel && currentModel.url;
       this.$set(this.cards, id, this.cards[id]);
       if (this.cardMap.get(this.currentlyFlipped) === this.cardMap.get(id)) {
         this.correctMatch(id);
@@ -91,14 +95,20 @@ export default {
       this.matchFound = true;
       this.resetCards();
     },
-    incorrectMatch: function correctMatch(id) {
+    incorrectMatch: async function correctMatch(id) {
       this.currentMessage = 'Try again';
+      this.clickingLocked = true;
+      await delay(1000);
       // flip both cards back down
-      this.cards[id].flipped = false;
-      this.$set(this.cards, id, this.cards[id]);
-      this.cards[this.currentlyFlipped].flipped = false;
-      this.$set(this.cards, this.currentlyFlipped, this.cards[this.currentlyFlipped]);
+      this.flipCardDown(id);
+      this.flipCardDown(this.currentlyFlipped);
       this.resetCards();
+      this.clickingLocked = false;
+    },
+    flipCardDown: function flipCardDown(id) {
+      this.cards[id].flipped = false;
+      delete this.cards[id].image;
+      this.$set(this.cards, id, this.cards[id]);
     },
     resetCards: function resetCards() {
       this.flippingActive = false;
@@ -111,9 +121,12 @@ export default {
 <style>
 #board{
   margin: 0 auto;
-  width: 720px; /** 6 * (Card width + card margin) **/
+  width: 732px; /** 6 * (Card width + card margin + border size (2)) **/
 }
 .messageBanner {
   text-align: center;
+}
+.messageBanner.matchFound {
+  color: #27ae60;
 }
 </style>

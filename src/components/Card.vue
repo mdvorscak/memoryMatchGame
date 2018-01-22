@@ -1,5 +1,5 @@
 <template>
-  <div class="card" v-on:click="flip" v-bind:class="{ flipped, matched }">
+  <div class="card" v-on:click="flip" v-bind:class="{ flipped, matched }" v-bind:style="{ 'background-image': 'url(' + image + ')' }">
   </div>
 </template>
 
@@ -17,11 +17,15 @@ export default {
     flipped: {
       type: Boolean,
       required: true
+    },
+    image: {
+      type: String,
+      required: false
     }
   },
   methods: {
     flip: function flip() {
-      if (this.matched) return;
+      if (this.matched || this.flipped) return;
       this.$emit('flip', this.id);
     }
   }
@@ -36,9 +40,13 @@ export default {
     border-radius: 4px;
     margin: 10px;
     display: inline-block;
+    border: 1px solid #333;
 }
 .card.flipped {
-  background-color: green;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
 }
 .card.matched {
   opacity: .2;
