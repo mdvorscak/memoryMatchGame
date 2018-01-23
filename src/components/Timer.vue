@@ -57,13 +57,12 @@ export default {
 };
 </script>
 
-<style>
-.timer {
-  margin: 10px;
-  padding: 5px;
-  background-color: #333;
-  display: inline-block;
-  color: #00ff00;
-  border-radius: 4px;
-}
+<style lang="stylus">
+.timer 
+  margin 10px
+  padding 5px
+  background-color #333
+  display inline-block
+  color #00ff00
+  border-radius 4px
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <game :numberOfCards="12" :numberOfMatches="2"/>
+    <game :numberOfCards="1" :numberOfMatches="2"/>
   </div>
 </template>
 
@@ -14,15 +14,13 @@ export default {
 };
 </script>
 
-<style>
-body {
-  margin: 0;
-}
+<style lang="stylus">
+body 
+  margin 0
 
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #333;
-}
+#app 
+  font-family 'Avenir', Helvetica, Arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  color #333
 </style>

@@ -32,23 +32,51 @@ export default {
 };
 </script>
 
-<style>
-.card {
-    width: 100px;
-    height: 150px;
-    background-color: red;
-    border-radius: 4px;
-    margin: 10px;
-    display: inline-block;
-    border: 1px solid #333;
-}
-.card.flipped {
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: transparent;
-}
-.card.matched {
-  opacity: .2;
-}
+<style lang="stylus">
+card-width = 100px
+card-height = 150px
+pattern-color = #f1c40f
+center(outer, inner)
+  (outer - inner)/2
+.card 
+  width card-width
+  height card-height
+  background-color #e74c3c
+  border-radius 4px
+  margin 10px
+  display inline-block
+  position relative
+  border 1px solid #333
+  /* transform: rotateY(180deg);
+  transition: 0.6s; */
+  &:before
+    width 20px
+    background-color pattern-color
+    height 100%
+    display inline-block
+    position absolute
+    left center(card-width, @width)
+    content: ' '
+  &:after
+    width 100%
+    background-color pattern-color
+    height 20px
+    display inline-block
+    position absolute
+    top center(card-height, @height)
+    content: ' '
+    
+.card.flipped 
+  background-size contain
+  background-repeat no-repeat
+  background-position center
+  background-color transparent
+  &:before
+  &:after
+    display none
+  /* transform: rotateY(0deg); */
+
+.card.matched 
+  opacity .2
+
 </style>

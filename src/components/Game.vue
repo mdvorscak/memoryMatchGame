@@ -132,15 +132,16 @@ export default {
 };
 </script>
 
-<style>
-#game{
-  margin: 0 auto;
-  width: 732px; /** 6 * (Card width + card margin + border size (2)) **/
-}
-.messageBanner {
-  text-align: center;
-}
-.messageBanner.matchFound {
-  color: #27ae60;
-}
+<style lang="stylus">
+card-width = 100px
+card-margin = 10px
+card-border = 1px
+#game
+  margin 0 auto
+  width 6 * (card-width + (card-margin + card-border) * 2) /** 6 * (Card width + card margin + border size (2)) **/
+
+.messageBanner 
+  text-align center
+  &.matchFound 
+    color #27ae60
 </style>
