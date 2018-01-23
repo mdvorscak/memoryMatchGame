@@ -46,8 +46,6 @@ center(outer, inner)
   display inline-block
   position relative
   border 1px solid #333
-  /* transform: rotateY(180deg);
-  transition: 0.6s; */
   &:before
     border 1px solid #333
     border-radius 4px
@@ -77,8 +75,7 @@ center(outer, inner)
   background-color transparent
   &:before
   &:after
-    display none
-  /* transform: rotateY(0deg); */
+    display none 
 
 .card.matched 
   opacity .2

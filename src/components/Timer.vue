@@ -59,8 +59,8 @@ export default {
 
 <style lang="stylus">
 .timer 
-  margin 10px
-  padding 5px
+  margin 0 10px
+  padding 10px
   background-color #333
   display inline-block
   color #00ff00

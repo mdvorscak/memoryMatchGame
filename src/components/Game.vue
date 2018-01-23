@@ -1,7 +1,10 @@
 <template>
   <div id="game">
       <h2 class="messageBanner" v-text="currentMessage" v-bind:class="{ matchFound }"></h2>
-      <timer :running="!gameOver"/>
+      <div class="play-controls">
+        <timer :running="!gameOver"/>
+        <controls v-on:reset="resetBoard" :gameOver="gameOver" />
+      </div>
       <div id="board">
         <card v-for="card in cards" :key="card.id" :id="card.id" v-on:flip="flipCard" :matched="card.matched" :flipped="card.flipped" :image="card.image" />
       </div>
@@ -13,7 +16,10 @@ import shuffle from 'shuffle-array';
 import delay from 'delay';
 import Card from '@/components/Card';
 import Timer from '@/components/Timer';
+import Controls from '@/components/Controls';
 import cardProvider from '@/services/cardProvider';
+
+const startMessage = 'Click a card to begin';
 
 export default {
   props: {
@@ -40,40 +46,44 @@ export default {
       matchFound: false,
       flippingActive: false,
       currentlyFlipped: -1,
-      currentMessage: 'Click a card to begin',
+      currentMessage: startMessage,
       clickingLocked: false,
       matches: 0,
       gameOver: false
     };
   },
   created() {
-    // get the underlying card models
-    this.cardDataModels = cardProvider(this.numberOfCards);
-    // prepare the available ids
-    const cardsViewModelsSize = this.numberOfCards * this.numberOfMatches;
-    const availableIds = [];
-    for (let i = 0; i < cardsViewModelsSize; i++) {
-      availableIds.push(i);
-    }
-    // Randomize the order
-    shuffle(availableIds);
-    // Map the dataModel to the view model
-    let currentDataModel;
-    let currentId;
-    for (let i = 0; i < this.numberOfCards; i++) {
-      currentDataModel = this.cardDataModels[i];
-      for (let x = 0; x < this.numberOfMatches; x++) {
-        currentId = availableIds.pop();
-        this.cards[currentId] = { id: currentId, matched: false, flipped: false };
-        this.cardMap.set(currentId, currentDataModel.id);
-      }
-    }
+    this.initBoard();
   },
   components: {
     Card,
+    Controls,
     Timer
   },
   methods: {
+    initBoard() {
+      // get the underlying card models
+      this.cardDataModels = cardProvider(this.numberOfCards);
+      // prepare the available ids
+      const cardsViewModelsSize = this.numberOfCards * this.numberOfMatches;
+      const availableIds = [];
+      for (let i = 0; i < cardsViewModelsSize; i++) {
+        availableIds.push(i);
+      }
+      // Randomize the order
+      shuffle(availableIds);
+      // Map the dataModel to the view model
+      let currentDataModel;
+      let currentId;
+      for (let i = 0; i < this.numberOfCards; i++) {
+        currentDataModel = this.cardDataModels[i];
+        for (let x = 0; x < this.numberOfMatches; x++) {
+          currentId = availableIds.pop();
+          this.cards[currentId] = { id: currentId, matched: false, flipped: false };
+          this.cardMap.set(currentId, currentDataModel.id);
+        }
+      }
+    },
     flipCard: function flipCard(id) {
       if (this.clickingLocked) return;
       this.cards[id].flipped = true;
@@ -127,6 +137,15 @@ export default {
     resetCards: function resetCards() {
       this.flippingActive = false;
       this.currentlyFlipped = -1;
+    },
+    resetBoard() {
+      this.matchFound = false;
+      this.currentMessage = startMessage;
+      this.clickingLocked = false;
+      this.matches = 0;
+      this.gameOver = false;
+      this.resetCards();
+      this.initBoard();
     }
   }
 };
@@ -144,4 +163,7 @@ card-border = 1px
   text-align center
   &.matchFound 
     color #27ae60
+.play-controls
+  display flex
+  justify-content space-between
 </style>
