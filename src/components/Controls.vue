@@ -1,11 +1,15 @@
 <template>
-  <button class="reset" v-on:click="reset">Reset Game</button>
+  <button class="reset" :disabled="!gameActive" v-on:click="reset" v-bind:class="{ gameActive, gameOver}">Reset Game</button>
 </template>
 
 <script>
 export default {
   props: {
     gameOver: {
+      type: Boolean,
+      required: true
+    },
+    gameActive: {
       type: Boolean,
       required: true
     }
@@ -19,11 +23,18 @@ export default {
 </script>
 
 <style lang="stylus">
-hover-color = #e3e3e3
+@import '../common/theme'
+colorButton(new-color, hover = true)
+  border-color new-color
+  background-color lighten(new-color, 30)
+  if hover
+    &:hover
+      background-color lighten(new-color, 20)
+  
 button.reset
-    background-color #f3f3f3
-    color #333
-    border 1px solid #9c9c9c
+    colorButton(#999, false)
+    color theme-black
+    border 1px solid
     margin 0 10px
     border-radius 3px
     display inline-block
@@ -35,10 +46,13 @@ button.reset
     text-transform uppercase
     transition .1s ease-in-out
     transition-property color, background-color, border-color
-    &:focus
+    &:focus:not(:&:disabled)
         outline none 
         border-color #3498db
-        background-color hover-color
-    &:hover
-        background-color hover-color
+    &:disabled
+      opacity: .3
+    &.gameActive
+      colorButton(theme-red)
+    &.gameOver
+      colorButton(theme-green)
 </style>

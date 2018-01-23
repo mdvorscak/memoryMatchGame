@@ -3,7 +3,7 @@
       <h2 class="messageBanner" v-text="currentMessage" v-bind:class="{ matchFound }"></h2>
       <div class="play-controls">
         <timer :running="!gameOver"/>
-        <controls v-on:reset="resetBoard" :gameOver="gameOver" />
+        <controls v-on:reset="resetBoard" :gameOver="gameOver" :gameActive="gameActive" />
       </div>
       <div id="board">
         <card v-for="card in cards" :key="card.id" :id="card.id" v-on:flip="flipCard" :matched="card.matched" :flipped="card.flipped" :image="card.image" />
@@ -49,6 +49,7 @@ export default {
       currentMessage: startMessage,
       clickingLocked: false,
       matches: 0,
+      gameActive: false,
       gameOver: false
     };
   },
@@ -85,6 +86,7 @@ export default {
       }
     },
     flipCard: function flipCard(id) {
+      this.gameActive = true;
       if (this.clickingLocked) return;
       this.cards[id].flipped = true;
       const currentModel = this.cardDataModels.find(model => this.cardMap.get(id) === model.id);
@@ -143,6 +145,7 @@ export default {
       this.currentMessage = startMessage;
       this.clickingLocked = false;
       this.matches = 0;
+      this.gameActive = false;
       this.gameOver = false;
       this.resetCards();
       this.initBoard();
@@ -152,6 +155,8 @@ export default {
 </script>
 
 <style lang="stylus">
+@import '../common/theme'
+
 card-width = 100px
 card-margin = 10px
 card-border = 1px
@@ -162,7 +167,7 @@ card-border = 1px
 .messageBanner 
   text-align center
   &.matchFound 
-    color #27ae60
+    color theme-green
 .play-controls
   display flex
   justify-content space-between

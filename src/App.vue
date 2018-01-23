@@ -15,6 +15,8 @@ export default {
 </script>
 
 <style lang="stylus">
+@import 'common/theme'
+
 body 
   margin 0
 
@@ -22,5 +24,5 @@ body
   font-family 'Avenir', Helvetica, Arial, sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
-  color #333
+  color theme-black
 </style>

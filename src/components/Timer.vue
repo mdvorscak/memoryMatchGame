@@ -58,11 +58,14 @@ export default {
 </script>
 
 <style lang="stylus">
+@import '../common/theme'
+@import '../common/app'
+
 .timer 
-  margin 0 10px
-  padding 10px
-  background-color #333
+  margin 0 app-space
+  padding app-space
+  background-color theme-black
   display inline-block
   color #00ff00
-  border-radius 4px
+  border-radius app-border-radius
 </style>

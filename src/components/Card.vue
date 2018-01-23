@@ -33,6 +33,9 @@ export default {
 </script>
 
 <style lang="stylus">
+@import '../common/theme'
+@import '../common/app';
+
 card-width = 100px
 card-height = 150px
 center(outer, inner)
@@ -40,18 +43,18 @@ center(outer, inner)
 .card 
   width card-width
   height card-height
-  background-color #57286B
-  border-radius 4px
-  margin 10px
+  background-color theme-purple
+  border-radius app-border-radius
+  margin app-space
   display inline-block
   position relative
-  border 1px solid #333
+  border app-border
   &:before
-    border 1px solid #333
-    border-radius 4px
+    border app-border
+    border-radius app-border-radius
     width 20px
     z-index 1
-    background-color #e74c3c
+    background-color theme-red
     height 20px
     display inline-block
     position absolute
@@ -61,7 +64,7 @@ center(outer, inner)
     content: ' '
   &:after
     width 100%
-    background-color #FFD52A
+    background-color theme-gold
     height 40px
     display inline-block
     position absolute
