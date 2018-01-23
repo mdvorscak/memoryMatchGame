@@ -35,13 +35,12 @@ export default {
 <style lang="stylus">
 card-width = 100px
 card-height = 150px
-pattern-color = #f1c40f
 center(outer, inner)
   (outer - inner)/2
 .card 
   width card-width
   height card-height
-  background-color #e74c3c
+  background-color #57286B
   border-radius 4px
   margin 10px
   display inline-block
@@ -50,17 +49,22 @@ center(outer, inner)
   /* transform: rotateY(180deg);
   transition: 0.6s; */
   &:before
+    border 1px solid #333
+    border-radius 4px
     width 20px
-    background-color pattern-color
-    height 100%
+    z-index 1
+    background-color #e74c3c
+    height 20px
     display inline-block
     position absolute
+    top center(card-height, @height)
     left center(card-width, @width)
+    transform rotate(45deg)
     content: ' '
   &:after
     width 100%
-    background-color pattern-color
-    height 20px
+    background-color #FFD52A
+    height 40px
     display inline-block
     position absolute
     top center(card-height, @height)
