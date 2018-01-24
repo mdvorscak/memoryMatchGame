@@ -12,6 +12,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const loadMinified = require('./load-minified')
 
 const env = process.env.NODE_ENV === 'testing'
@@ -36,11 +37,17 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
+    new UglifyJSPlugin({
+      uglifyOptions: {
+        ecma: 6,
+        warnings: false,
+        compress: true,
+        output: {
+          comments: false,
+          beautify: false
+        }
       },
-      sourceMap: true
+      sourceMap: false
     }),
     // extract css into its own file
     new ExtractTextPlugin({
