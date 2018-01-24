@@ -157,10 +157,8 @@ export default {
 
 <style lang="stylus">
 @import '../common/theme'
+@import '../common/card-dimensions'
 
-card-width = 100px
-card-margin = 10px
-card-border = 1px
 #game
   margin 0 auto
   width 6 * (card-width + (card-margin + card-border) * 2) /** 6 * (Card width + card margin + border size (2)) **/

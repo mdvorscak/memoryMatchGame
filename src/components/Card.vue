@@ -39,10 +39,9 @@ export default {
 
 <style lang="stylus">
 @import '../common/theme'
-@import '../common/app';
+@import '../common/app'
+@import '../common/card-dimensions'
 
-card-width = 100px
-card-height = 150px
 center(outer, inner)
   (outer - inner)/2
 .card 
