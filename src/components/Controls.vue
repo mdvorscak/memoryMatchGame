@@ -1,5 +1,5 @@
 <template>
-  <button class="reset" :disabled="!gameActive" v-on:click="reset" v-bind:class="{ gameActive, gameOver}">Reset Game</button>
+  <button class="reset" :disabled="!gameActive" v-on:click="reset" v-bind:class="{ gameActive, gameOver}" v-text="label"></button>
 </template>
 
 <script>
@@ -17,6 +17,11 @@ export default {
   methods: {
     reset() {
       this.$emit('reset');
+    }
+  },
+  computed: {
+    label() {
+      return this.gameOver ? 'Play Again' : 'Reset Game';
     }
   }
 };
