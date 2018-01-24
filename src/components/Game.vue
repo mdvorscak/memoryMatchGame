@@ -158,10 +158,14 @@ export default {
 <style lang="stylus">
 @import '../common/theme'
 @import '../common/card-dimensions'
+full-card-size = (card-width + (card-margin + card-border) * 2)
 
 #game
   margin 0 auto
-  width 6 * (card-width + (card-margin + card-border) * 2) /** 6 * (Card width + card margin + border size (2)) **/
+  width 6 * full-card-size
+  @media screen and (max-width: 420px) 
+    width 3 * full-card-size
+
 
 .messageBanner 
   text-align center
