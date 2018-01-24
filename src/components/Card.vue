@@ -1,5 +1,5 @@
 <template>
-  <div class="card" v-on:click="flip" v-bind:class="{ flipped, matched }" v-bind:style="{ 'background-image': 'url(' + image + ')' }">
+  <div class="card" v-on:click="flip" v-bind:class="{ flipped, matched }" v-bind:style="backgroundImage">
   </div>
 </template>
 
@@ -27,6 +27,11 @@ export default {
     flip: function flip() {
       if (this.matched || this.flipped) return;
       this.$emit('flip', this.id);
+    }
+  },
+  computed: {
+    backgroundImage() {
+      return this.image ? { 'background-image': `url(${this.image})` } : {};
     }
   }
 };
