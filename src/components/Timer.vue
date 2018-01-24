@@ -27,9 +27,6 @@ export default {
       intervalHandler: -1
     };
   },
-  mounted() {
-    this.start();
-  },
   methods: {
     start() {
       this.startTime = Date.now();

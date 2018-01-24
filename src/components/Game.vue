@@ -2,7 +2,7 @@
   <div id="game">
       <h2 class="messageBanner" v-text="currentMessage" v-bind:class="{ matchFound }"></h2>
       <div class="play-controls">
-        <timer :running="!gameOver"/>
+        <timer :running="gameActive"/>
         <controls v-on:reset="resetBoard" :gameOver="gameOver" :gameActive="gameActive" />
       </div>
       <div id="board">
@@ -119,6 +119,7 @@ export default {
     endGame() {
       this.currentMessage = 'Congrats, you won!';
       this.gameOver = true;
+      this.gameActive = false;
     },
     incorrectMatch: async function correctMatch(id) {
       this.currentMessage = 'Try again';

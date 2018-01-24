@@ -1,5 +1,5 @@
 <template>
-  <button class="reset" :disabled="!gameActive" v-on:click="reset" v-bind:class="{ gameActive, gameOver}" v-text="label"></button>
+  <button class="reset" :disabled="!(gameActive || gameOver)" v-on:click="reset" v-bind:class="{ gameActive, gameOver}" v-text="label"></button>
 </template>
 
 <script>
