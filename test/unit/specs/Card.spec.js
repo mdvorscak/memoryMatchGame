@@ -50,7 +50,7 @@ describe('Card.vue', () => {
         }
       });
       sut.find('.card').trigger('click');
-      expect(sut.emitted().flip[0]).to.equal(id);
+      expect(sut.emitted().flip[0][0]).to.equal(id);
     });
 
     it('should not emit a flip event when clicked on if already flipped', () => {
@@ -61,7 +61,7 @@ describe('Card.vue', () => {
         }
       });
       sut.find('.card').trigger('click');
-      expect(sut.emitted().flip).toBeFalsy();
+      expect(sut.emitted().flip).not.to.be.ok;
     });
 
     it('should not emit a flip event when clicked on if already matched', () => {
@@ -72,7 +72,7 @@ describe('Card.vue', () => {
         }
       });
       sut.find('.card').trigger('click');
-      expect(sut.emitted().flip).toBeFalsy();
+      expect(sut.emitted().flip).not.to.be.ok;
     });
   });
 });
