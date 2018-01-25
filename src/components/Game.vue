@@ -6,13 +6,13 @@
         <controls v-on:reset="resetBoard" :gameOver="gameOver" :gameActive="gameActive" />
       </div>
       <div id="board">
-        <card v-for="card in cards" :key="card.id" :id="card.id" v-on:flip="flipCard" :matched="card.matched" :flipped="card.flipped" :image="card.image" />
+        <card v-for="(card, position) in cards" :key="position" :id="card.id" :position="position" 
+        :matched="card.matched" :flipped="card.flipped" :image="card.image" v-on:flip="flipCard"/>
       </div>
   </div>
 </template>
 
 <script>
-import shuffle from 'shuffle-array';
 import delay from 'delay';
 import Card from '@/components/Card';
 import Timer from '@/components/Timer';
@@ -35,17 +35,12 @@ export default {
   data() {
     return {
       cards: [],
-      /**
-       * maps between the underlying card id and the displayed card id, like this:
-       * displayedId: underlyingId
-       * note: there should be twice as many displayedIds as underlying Ids
-       * (since each card will have 1 duplicate)
-       */
-      cardMap: new Map(),
-      cardDataModels: [],
       matchFound: false,
       flippingActive: false,
-      currentlyFlipped: -1,
+      currentlyFlipped: {
+        id: -1,
+        position: -1
+      },
       currentMessage: startMessage,
       clickingLocked: false,
       matches: 0,
@@ -64,55 +59,35 @@ export default {
   methods: {
     initBoard() {
       // get the underlying card models
-      this.cardDataModels = cardProvider(this.numberOfCards);
-      // prepare the available ids
-      const cardsViewModelsSize = this.numberOfCards * this.numberOfMatches;
-      const availableIds = [];
-      for (let i = 0; i < cardsViewModelsSize; i++) {
-        availableIds.push(i);
-      }
-      // Randomize the order
-      shuffle(availableIds);
-      // Map the dataModel to the view model
-      let currentDataModel;
-      let currentId;
-      for (let i = 0; i < this.numberOfCards; i++) {
-        currentDataModel = this.cardDataModels[i];
-        for (let x = 0; x < this.numberOfMatches; x++) {
-          currentId = availableIds.pop();
-          this.cards[currentId] = { id: currentId, matched: false, flipped: false };
-          this.cardMap.set(currentId, currentDataModel.id);
-        }
-      }
+      this.cards = cardProvider(this.numberOfCards, this.numberOfMatches);
     },
-    flipCard(id) {
+    flipCard(id, position) {
       this.gameActive = true;
       if (this.clickingLocked) return;
-      this.cards[id].flipped = true;
-      const currentModel = this.cardDataModels.find(model => this.cardMap.get(id) === model.id);
-      this.cards[id].image = currentModel && currentModel.url;
-      this.$set(this.cards, id, this.cards[id]);
-      if (this.cardMap.get(this.currentlyFlipped) === this.cardMap.get(id)) {
-        this.correctMatch(id);
+      this.cards[position].flipped = true;
+      this.$set(this.cards, position, this.cards[position]);
+      if (this.currentlyFlipped.id === id) {
+        this.correctMatch(position);
       } else if (this.flippingActive) {
-        this.incorrectMatch(id);
+        this.incorrectMatch(position);
       } else {
         // First card flipped
-        this.currentlyFlipped = id;
+        this.currentlyFlipped = { id, position };
         this.flippingActive = true;
       }
     },
-    correctMatch(id) {
+    correctMatch(position) {
       this.currentMessage = 'You found a match!';
       // set both of the cards to matched
-      this.cards[id].matched = true;
-      this.$set(this.cards, id, this.cards[id]);
-      this.cards[this.currentlyFlipped].matched = true;
-      this.$set(this.cards, this.currentlyFlipped, this.cards[this.currentlyFlipped]);
+      this.cards[position].matched = true;
+      this.$set(this.cards, position, this.cards[position]);
+      this.cards[this.currentlyFlipped.position].matched = true;
+      this.$set(this.cards, this.currentlyFlipped.position,
+        this.cards[this.currentlyFlipped.position]);
       this.matchFound = true;
       this.resetCards();
       this.matches += 1;
-      if (this.matches === this.cardDataModels.length) {
+      if (this.matches === this.cards.length) {
         this.endGame();
       }
     },
@@ -121,25 +96,27 @@ export default {
       this.gameOver = true;
       this.gameActive = false;
     },
-    async incorrectMatch(id) {
+    async incorrectMatch(position) {
       this.currentMessage = 'Try again';
       this.matchFound = false;
       this.clickingLocked = true;
       await delay(1000);
       // flip both cards back down
-      this.flipCardDown(id);
-      this.flipCardDown(this.currentlyFlipped);
+      this.flipCardDown(position);
+      this.flipCardDown(this.currentlyFlipped.position);
       this.resetCards();
       this.clickingLocked = false;
     },
-    flipCardDown(id) {
-      this.cards[id].flipped = false;
-      delete this.cards[id].image;
-      this.$set(this.cards, id, this.cards[id]);
+    flipCardDown(position) {
+      this.cards[position].flipped = false;
+      this.$set(this.cards, position, this.cards[position]);
     },
     resetCards() {
       this.flippingActive = false;
-      this.currentlyFlipped = -1;
+      this.currentlyFlipped = {
+        id: -1,
+        position: -1
+      };
     },
     resetBoard() {
       this.matchFound = false;

@@ -9,13 +9,15 @@
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "serve:prod": "node server/prod-server.js",
-    "start:prod" : "npm run build && npm run serve:prod",
+    "start:prod": "npm run build && npm run serve:prod",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs"
   },
   "dependencies": {
+    "clone": "^2.1.1",
     "delay": "^2.0.0",
+    "object-merge": "^2.5.1",
     "shuffle-array": "^1.0.1",
     "vue": "^2.5.2"
   },

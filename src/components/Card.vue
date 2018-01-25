@@ -10,6 +10,10 @@ export default {
       type: Number,
       required: true
     },
+    position: {
+      type: Number,
+      required: true
+    },
     matched: {
       type: Boolean,
       required: true
@@ -26,12 +30,12 @@ export default {
   methods: {
     flip() {
       if (this.matched || this.flipped) return;
-      this.$emit('flip', this.id);
+      this.$emit('flip', this.id, this.position);
     }
   },
   computed: {
     backgroundImage() {
-      return this.image ? { 'background-image': `url(${this.image})` } : {};
+      return this.image && this.flipped ? { 'background-image': `url(${this.image})` } : {};
     }
   }
 };

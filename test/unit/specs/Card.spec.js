@@ -8,7 +8,8 @@ describe('Card.vue', () => {
     beforeEach(() => {
       sut = mount(Card, {
         propsData: {
-          flipped: false
+          flipped: false,
+          image: 'path/to/image.jpg'
         }
       });
     });
