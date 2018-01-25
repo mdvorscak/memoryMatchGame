@@ -85,7 +85,7 @@ export default {
         }
       }
     },
-    flipCard: function flipCard(id) {
+    flipCard(id) {
       this.gameActive = true;
       if (this.clickingLocked) return;
       this.cards[id].flipped = true;
@@ -102,7 +102,7 @@ export default {
         this.flippingActive = true;
       }
     },
-    correctMatch: function correctMatch(id) {
+    correctMatch(id) {
       this.currentMessage = 'You found a match!';
       // set both of the cards to matched
       this.cards[id].matched = true;
@@ -121,7 +121,7 @@ export default {
       this.gameOver = true;
       this.gameActive = false;
     },
-    incorrectMatch: async function correctMatch(id) {
+    async incorrectMatch(id) {
       this.currentMessage = 'Try again';
       this.matchFound = false;
       this.clickingLocked = true;
@@ -132,12 +132,12 @@ export default {
       this.resetCards();
       this.clickingLocked = false;
     },
-    flipCardDown: function flipCardDown(id) {
+    flipCardDown(id) {
       this.cards[id].flipped = false;
       delete this.cards[id].image;
       this.$set(this.cards, id, this.cards[id]);
     },
-    resetCards: function resetCards() {
+    resetCards() {
       this.flippingActive = false;
       this.currentlyFlipped = -1;
     },
