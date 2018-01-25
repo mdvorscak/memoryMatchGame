@@ -75,26 +75,6 @@ describe('Game.vue', () => {
         firstCard.trigger('click');
         expect(wrapper.vm.flippingActive).to.equal(true);
       });
-
-      // it('should flip the a second card when one other is flipped', () => {
-
-      // });
-
-      // it('should flip the cards back over when they are not a match', () => {
-
-      // });
-
-      // it('should remove the cards when they are a match', () => {
-
-      // });
     });
-
-    // it('should start when the board is created', () => {
-
-    // });
-
-    // it('should end when there are no more matches left', () => {
-
-    // });
   });
 });
