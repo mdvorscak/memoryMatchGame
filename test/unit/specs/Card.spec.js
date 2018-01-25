@@ -61,7 +61,9 @@ describe('Card.vue', () => {
         }
       });
       sut.find('.card').trigger('click');
+      /* eslint-disable no-unused-expressions */
       expect(sut.emitted().flip).not.to.be.ok;
+      /* eslint-enable no-unused-expressions */
     });
 
     it('should not emit a flip event when clicked on if already matched', () => {
@@ -72,7 +74,9 @@ describe('Card.vue', () => {
         }
       });
       sut.find('.card').trigger('click');
+      /* eslint-disable no-unused-expressions */
       expect(sut.emitted().flip).not.to.be.ok;
+      /* eslint-enable no-unused-expressions */
     });
   });
 });

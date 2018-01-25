@@ -23,7 +23,9 @@ describe('Controls.vue', () => {
 
     it('should emit the reset event when clicked on', () => {
       sut.find('button').trigger('click');
+      /* eslint-disable no-unused-expressions */
       expect(sut.emitted().reset).to.be.ok;
+      /* eslint-enable no-unused-expressions */
     });
   });
 
@@ -47,7 +49,9 @@ describe('Controls.vue', () => {
 
     it('should emit the reset event when clicked on', () => {
       sut.find('button').trigger('click');
+      /* eslint-disable no-unused-expressions */
       expect(sut.emitted().reset).to.be.ok;
+      /* eslint-enable no-unused-expressions */
     });
   });
 
@@ -71,7 +75,9 @@ describe('Controls.vue', () => {
 
     it('should not emit the reset event when clicked on', () => {
       sut.find('button').trigger('click');
+      /* eslint-disable no-unused-expressions */
       expect(sut.emitted().reset).not.to.be.ok;
+      /* eslint-enable no-unused-expressions */
     });
   });
 });
