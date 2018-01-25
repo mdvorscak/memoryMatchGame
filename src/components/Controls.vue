@@ -16,7 +16,9 @@ export default {
   },
   methods: {
     reset() {
-      this.$emit('reset');
+      if (this.gameActive || this.gameOver) {
+        this.$emit('reset');
+      }
     }
   },
   computed: {
