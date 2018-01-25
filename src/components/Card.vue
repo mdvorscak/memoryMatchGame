@@ -24,7 +24,7 @@ export default {
     }
   },
   methods: {
-    flip: function flip() {
+    flip() {
       if (this.matched || this.flipped) return;
       this.$emit('flip', this.id);
     }
