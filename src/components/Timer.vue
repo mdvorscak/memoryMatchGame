@@ -1,6 +1,6 @@
 <template>
   <div class="timer">
-    <span class="digit">{{minutes | formatTime}}</span>:<span class="digit">{{seconds | formatTime}}</span>
+    <span class="mins">{{minutes | formatTime}}</span>:<span class="secs">{{seconds | formatTime}}</span>
   </div>
 </template>
 
@@ -15,9 +15,11 @@ export default {
   },
   watch: {
     running(newVal) {
-      const toggle = newVal ? this.start : this.stop;
-      toggle();
+      this.toggle(newVal);
     }
+  },
+  mounted() {
+    this.toggle(this.running);
   },
   data() {
     return {
@@ -28,11 +30,17 @@ export default {
     };
   },
   methods: {
+    toggle(on) {
+      /* eslint-disable no-unused-expressions */
+      on ? this.start() : this.stop();
+      /* eslint-enable no-unused-expressions */
+    },
     start() {
       this.startTime = Date.now();
 
       this.intervalHandler = setInterval(() => {
         const now = Date.now();
+
         const secondDiff = Math.floor((now - this.startTime) / 1000);
         this.seconds = secondDiff % 60;
         this.minutes = Math.floor(secondDiff / 60) % 60;
