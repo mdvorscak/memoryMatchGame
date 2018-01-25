@@ -1,13 +1,28 @@
 <template>
   <div id="game">
-      <h2 class="messageBanner" v-text="currentMessage" v-bind:class="{ matchFound }"></h2>
+      <h2 
+        class="messageBanner" 
+        v-text="currentMessage" 
+        v-bind:class="{ matchFound }"
+      ></h2>
       <div class="play-controls">
         <timer :running="gameActive"/>
-        <controls v-on:reset="resetBoard" :gameOver="gameOver" :gameActive="gameActive" />
+        <controls 
+          v-on:reset="resetBoard" 
+          :gameOver="gameOver" 
+          :gameActive="gameActive" 
+        />
       </div>
       <div id="board">
-        <card v-for="(card, position) in cards" :key="position" :id="card.id" :position="position" 
-        :matched="card.matched" :flipped="card.flipped" :image="card.image" v-on:flip="flipCard"/>
+        <card v-for="(card, position) in cards" 
+          :key="position" 
+          :id="card.id" 
+          :position="position" 
+          :matched="card.matched" 
+          :flipped="card.flipped" 
+          :image="card.image"
+          v-on:flip="flipCard"
+        />
       </div>
   </div>
 </template>

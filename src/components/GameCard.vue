@@ -1,5 +1,9 @@
 <template>
-  <div class="card" v-on:click="flip" v-bind:class="{ flipped, matched }" v-bind:style="backgroundImage">
+  <div class="card" 
+    v-on:click="flip" 
+    v-bind:class="{ flipped, matched }" 
+    v-bind:style="backgroundImage"
+  >
   </div>
 </template>
 
