@@ -3,12 +3,12 @@
       <h2 
         class="messageBanner" 
         v-text="currentMessage" 
-        v-bind:class="{ matchFound }"
+        :class="{ matchFound }"
       ></h2>
       <div class="play-controls">
         <timer :running="gameActive"/>
         <controls 
-          v-on:reset="resetBoard" 
+          @reset="resetBoard" 
           :gameOver="gameOver" 
           :gameActive="gameActive" 
         />
@@ -21,7 +21,7 @@
           :matched="card.matched" 
           :flipped="card.flipped" 
           :image="card.image"
-          v-on:flip="flipCard"
+          @flip="flipCard"
         />
       </div>
   </div>

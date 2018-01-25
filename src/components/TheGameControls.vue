@@ -2,8 +2,8 @@
   <button 
     class="reset" 
     :disabled="!(gameActive || gameOver)" 
-    v-on:click="reset"
-    v-bind:class="{ gameActive, gameOver}" 
+    @click="reset"
+    :class="{ gameActive, gameOver}" 
     v-text="label"
   ></button>
 </template>

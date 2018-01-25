@@ -1,8 +1,8 @@
 <template>
   <div class="card" 
-    v-on:click="flip" 
-    v-bind:class="{ flipped, matched }" 
-    v-bind:style="backgroundImage"
+    @click="flip" 
+    :class="{ flipped, matched }" 
+    :style="backgroundImage"
   >
   </div>
 </template>
