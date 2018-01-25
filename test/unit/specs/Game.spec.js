@@ -45,21 +45,6 @@ describe('Game.vue', () => {
         const wrapper = mount(Game);
         expect(wrapper.find('.messageBanner').text()).to.equal('Click a card to begin');
       });
-
-      // it('should inform you when a match is not found', () => {
-      //   const wrapper = mountSutWith({ numberOfCards: 2, numberOfMatches: 1 });
-      //   wrapper.findAll(Card).trigger('click');
-
-      //   expect(wrapper.find('.messageBanner').text()).to.equal('Try again');
-      // });
-
-      // it('should inform you when a match is found', () => {
-      //   const wrapper = mountSutWith({ numberOfCards: 2, numberOfMatches: 1 });
-      //   wrapper.trigger('flipCard', 1, 1);
-      //   wrapper.trigger('flipCard', 1, 1);
-      //   wrapper.update();
-      //   expect(wrapper.find('.messageBanner').text()).to.equal('You found a match!');
-      // });
     });
     describe('clicking cards', () => {
       it('should flip the card when there are no others flipped up', () => {
