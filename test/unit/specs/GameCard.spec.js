@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import Card from '@/components/Card';
+import Card from '@/components/GameCard';
 
 
 describe('Card.vue', () => {

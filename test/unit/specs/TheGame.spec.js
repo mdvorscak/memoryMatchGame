@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
-import Game from '@/components/Game';
-import Card from '@/components/Card';
+import Game from '@/components/TheGame';
+import Card from '@/components/GameCard';
 
 function mountSutWith(props) {
   return mount(Game, { propsData: props });

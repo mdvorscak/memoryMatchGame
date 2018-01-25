@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import sinon from 'sinon';
-import Timer from '@/components/Timer';
+import Timer from '@/components/CountUpTimer';
 
 describe('Timer.vue', () => {
   let clock;

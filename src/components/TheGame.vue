@@ -14,9 +14,9 @@
 
 <script>
 import delay from 'delay';
-import Card from '@/components/Card';
-import Timer from '@/components/Timer';
-import Controls from '@/components/Controls';
+import Card from '@/components/GameCard';
+import Timer from '@/components/CountUpTimer';
+import Controls from '@/components/TheGameControls';
 import cardProvider from '@/services/cardProvider';
 
 const startMessage = 'Click a card to begin';

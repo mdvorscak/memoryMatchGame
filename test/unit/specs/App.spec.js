@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import App from '@/App';
-import Game from '@/components/Game';
+import Game from '@/components/TheGame';
 
 describe('App.vue', () => {
   it('should contain exactly one game', () => {

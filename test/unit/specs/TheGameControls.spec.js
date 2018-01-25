@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import Controls from '@/components/Controls';
+import Controls from '@/components/TheGameControls';
 
 
 describe('Controls.vue', () => {

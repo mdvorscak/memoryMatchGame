@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Game from '@/components/Game';
+import Game from '@/components/TheGame';
 
 export default {
   components: {
