@@ -12,6 +12,7 @@
     "start:prod": "npm run build && npm run serve:prod",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",
+    "coveralls": "cat ./test/unit/coverage/lcov.info | coveralls",
     "lint": "eslint --ext .js,.vue src test/unit/specs"
   },
   "dependencies": {
@@ -36,6 +37,7 @@
     "chalk": "^2.1.0",
     "connect-history-api-fallback": "^1.4.0",
     "copy-webpack-plugin": "^4.1.1",
+    "coveralls": "^3.0.0",
     "cross-env": "^5.0.5",
     "cross-spawn": "^5.1.0",
     "css-loader": "^0.28.7",
