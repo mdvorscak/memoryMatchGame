@@ -33,11 +33,20 @@ export default {
   },
   methods: {
     flip() {
+      // prevent an already flipped card from being flipped again
       if (this.matched || this.flipped) return;
+      /** @event GameCard#flip
+        * @type {Array[number]}
+        * @param id - the id of the card
+        * @param position - the position of the card
+       */
       this.$emit('flip', this.id, this.position);
     }
   },
   computed: {
+    /** @description Used to obfuscate the cards url, to prevent cheating by inspecting the cards.
+     *    Will only appear if the card is flipped up, used by the card's style attribute
+     */
     backgroundImage() {
       return this.image && this.flipped ? { 'background-image': `url(${this.image})` } : {};
     }

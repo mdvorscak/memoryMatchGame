@@ -19,6 +19,7 @@ export default {
     }
   },
   mounted() {
+    /** begin timing immediately if running was true when mounted */
     this.toggle(this.running);
   },
   data() {
@@ -30,11 +31,15 @@ export default {
     };
   },
   methods: {
+    /** @description Toggles the timer on or off
+     *  @param on {boolean} - True to start timer, false to stop timer
+     */
     toggle(on) {
       /* eslint-disable no-unused-expressions */
       on ? this.start() : this.stop();
       /* eslint-enable no-unused-expressions */
     },
+    /** @description Starts the timer */
     start() {
       this.startTime = Date.now();
 
@@ -46,11 +51,17 @@ export default {
         this.minutes = Math.floor(secondDiff / 60) % 60;
       }, 1000);
     },
+    /** @description Stops the timer */
     stop() {
       clearInterval(this.intervalHandler);
     }
   },
   filters: {
+    /** @description A number formatting filter to display numbers padded with 0s
+     *  @param value {number} - number of seconds/minutes/hours to format
+     *  @returns {String} -  the formatted time
+     *  @example {{ 5 | formatTime }} // renders '05'
+     */
     formatTime(value) {
       let stringValue = value.toString();
       if (stringValue.length <= 1) {

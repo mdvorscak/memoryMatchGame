@@ -21,13 +21,19 @@ export default {
     }
   },
   methods: {
+    /** @description fires the reset event if the button could be clicked. */
     reset() {
+      /** This is the 'server side' validation that the disabled status hasn't been tampered with */
       if (this.gameActive || this.gameOver) {
+        /** @event TheGameControls#reset
+         *  @see TheGame#resetBoard()
+         */
         this.$emit('reset');
       }
     }
   },
   computed: {
+    /** @description Will return 'Reset Game' until the game is over and then display 'Play Again' */
     label() {
       return this.gameOver ? 'Play Again' : 'Reset Game';
     }
