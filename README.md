@@ -21,7 +21,7 @@ Vue, ES6, Stylus, Webpack, Babel
 
 To run a production version of this game locally, first run the command(s):
 
-`git clone ... && cd memory-match-game && npm i && npm run start:prod`
+`git clone git@github.com:mdvorscak/memoryMatchGame.git && cd memory-match-game && npm i && npm run start:prod`
 
 Then navigate to `localhost:3000`
 
