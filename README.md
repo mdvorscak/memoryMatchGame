@@ -1,3 +1,5 @@
+[![Build Status][travis-image]][travis-url] [![license][license-image]][license-url]
+
 # memory-match-game
 
 > A simple memory game where you match images
@@ -47,3 +49,8 @@ npm run build --report
 npm run unit
 
 ```
+[travis-url]: https://travis-ci.org/mdvorscak/memoryMatchGame
+[travis-image]: https://img.shields.io/travis/mdvorscak/memoryMatchGame/master.svg?style=flat-square
+
+[license-url]: LICENSE
+[license-image]: https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square
