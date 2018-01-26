@@ -33,7 +33,7 @@ export default {
     }
   },
   computed: {
-    /** @description Will return 'Reset Game' until the game is over and then display 'Play Again' */
+    /** @description Will return the correct label based on play state */
     label() {
       return this.gameOver ? 'Play Again' : 'Reset Game';
     }
