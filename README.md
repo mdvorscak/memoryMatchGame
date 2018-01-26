@@ -1,4 +1,4 @@
-[![Build Status][travis-image]][travis-url] [![license][license-image]][license-url]
+[![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![license][license-image]][license-url]
 
 # memory-match-game
 
@@ -51,6 +51,9 @@ npm run unit
 ```
 [travis-url]: https://travis-ci.org/mdvorscak/memoryMatchGame
 [travis-image]: https://img.shields.io/travis/mdvorscak/memoryMatchGame/master.svg?style=flat-square
+
+[coveralls-url]: https://coveralls.io/r/mdvorscak/memoryMatchGame?branch=master
+[coveralls-image]: https://img.shields.io/coveralls/github/mdvorscak/memoryMatchGame/master.svg?style=flat-square
 
 [license-url]: LICENSE
 [license-image]: https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square
