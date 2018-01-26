@@ -115,7 +115,7 @@ export default {
       this.matchFound = true;
       this.resetCards();
       this.matches += 1;
-      if (this.matches === this.cards.length) {
+      if ((this.matches * this.numberOfMatches) === this.cards.length) {
         this.endGame();
       }
     },
