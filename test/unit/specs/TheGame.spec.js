@@ -126,6 +126,31 @@ describe('Game.vue', () => {
       });
     });
 
+    describe('setCard (helper function)', () => {
+      let wrapper;
+      let $set;
+      const position = 0;
+      const properties = { property1: 42, property2: 'test' };
+      beforeEach(() => {
+        wrapper = mount(Game, { propsData: { numberOfCards: 1, numberOfMatches: 2 } });
+        $set = sinon.stub();
+        wrapper.setMethods({ $set });
+      });
+
+      it('should set every property at the given card position', () => {
+        wrapper.vm.setCard(position, properties);
+        expect(wrapper.vm.cards[position].property1).to.equal(42);
+        expect(wrapper.vm.cards[position].property2).to.equal('test');
+      });
+
+      it('should call the set helper method at the given card position', () => {
+        wrapper.vm.setCard(position, properties);
+        expect($set.calledWith(wrapper.vm.cards,
+          position,
+          wrapper.vm.cards[position])).to.equal(true);
+      });
+    });
+
     describe('incorrectMatch', () => {
       let wrapper;
       let setCard;
