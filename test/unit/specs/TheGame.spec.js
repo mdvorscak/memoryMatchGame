@@ -97,6 +97,35 @@ describe('Game.vue', () => {
       });
     });
 
+    describe('flipCard', () => {
+      let wrapper;
+      let correctMatch;
+      let incorrectMatch;
+      beforeEach(() => {
+        wrapper = mountSuthWith1Card();
+        correctMatch = sinon.stub();
+        incorrectMatch = sinon.stub();
+        wrapper.setMethods({ correctMatch, incorrectMatch });
+      });
+
+      it('should correctly match if the cards id is equal to the currently flipped id', () => {
+        const id = 1;
+        const position = 0;
+        wrapper.vm.currentlyFlipped.id = id;
+        wrapper.vm.flipCard(id, position);
+        expect(correctMatch.calledWith(position)).to.equal(true);
+      });
+
+      it('should incorrectly match if the cards id is not equal to the currently flipped id', () => {
+        const id = 1;
+        const position = 0;
+        wrapper.vm.currentlyFlipped.id = 2;
+        wrapper.vm.flippingActive = true;
+        wrapper.vm.flipCard(id, position);
+        expect(incorrectMatch.calledWith(position)).to.equal(true);
+      });
+    });
+
     describe('incorrectMatch', () => {
       let wrapper;
       let setCard;
