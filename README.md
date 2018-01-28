@@ -8,7 +8,8 @@
 
 Vue, ES6, Stylus, Webpack, Babel
 
-## Example Gameplay
+## Sample Gameplay
+Note: image quality of sample gameplay is significantly lower then actual gameplay
 
 ![Gameplay](sample_gameplay.gif "gameplay")
 
