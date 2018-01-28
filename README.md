@@ -1,4 +1,4 @@
-[![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![license][license-image]][license-url]
+[![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![license][license-image]][license-url] [![hosted][hosted-image]][hosted-url]
 
 # memory-match-game
 
@@ -10,7 +10,7 @@ Vue, ES6, Stylus, Webpack, Babel
 
 ## Play
 
-https://mdvorscak-memory-match.surge.sh/
+[Play it live here][hosted-url]
 
 ## Features
 
@@ -57,3 +57,6 @@ npm run unit
 
 [license-url]: LICENSE
 [license-image]: https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square
+
+[hosted-url]: https://mdvorscak-memory-match.surge.sh/
+[hosted-image]: https://img.shields.io/badge/Hosted%20On-Surge-green.svg?style=flat-square
