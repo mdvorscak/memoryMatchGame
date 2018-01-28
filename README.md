@@ -8,6 +8,10 @@
 
 Vue, ES6, Stylus, Webpack, Babel
 
+## Play
+
+https://mdvorscak-memory-match.surge.sh/
+
 ## Features
 
 - Game Timing
