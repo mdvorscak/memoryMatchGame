@@ -121,6 +121,15 @@ describe('Game.vue', () => {
           done();
         });
       });
+
+      it('should prevent other cards from being flipped', () => {
+        const position = 0;
+        const otherCardPosition = 1;
+        wrapper.vm.currentlyFlipped.position = 42;
+        wrapper.vm.incorrectMatch(position);
+        wrapper.vm.flipCard(1, otherCardPosition);
+        expect(setCard.neverCalledWith(otherCardPosition, { flipped: true })).to.equal(true);
+      });
     });
 
     describe('correctMatch', () => {
