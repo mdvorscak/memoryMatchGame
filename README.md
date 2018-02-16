@@ -1,4 +1,4 @@
-[![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![license][license-image]][license-url] [![hosted][hosted-image]][hosted-url]
+[![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url] [![license][license-image]][license-url] [![XO code style][xo-image]][xo-url] [![hosted][hosted-image]][hosted-url]
 
 # memory-match-game
 
@@ -57,6 +57,9 @@ npm run unit
 
 [license-url]: LICENSE
 [license-image]: https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square
+
+[xo-url]: https://github.com/xojs/xo
+[xo-image]: https://img.shields.io/badge/code_style-XO-5ed9c7.svg?style=flat-square
 
 [hosted-url]: https://mdvorscak-memory-match.surge.sh/
 [hosted-image]: https://img.shields.io/badge/Hosted%20On-Surge-green.svg?style=flat-square
