@@ -11,7 +11,7 @@
     "serve:prod": "node server/prod-server.js",
     "start:prod": "npm run build && npm run serve:prod",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-    "test": "npm run unit",
+    "test": "xo && npm run unit",
     "coveralls": "cat ./test/unit/coverage/lcov.info | coveralls",
     "lint": "eslint --ext .js,.vue src test/unit/specs"
   },
@@ -48,8 +48,9 @@
     "eslint-import-resolver-webpack": "^0.8.1",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-html": "^3.2.2",
-    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^5.2.0",
+    "eslint-plugin-vue": "^4.2.2",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.16.2",
     "extract-text-webpack-plugin": "^3.0.0",
@@ -89,11 +90,48 @@
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.19.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "xo": "^0.20.2"
+  },
+  "xo": {
+    "space": true,
+    "extends": ["plugin:vue/recommended", "plugin:import/errors"],
+    "settings": { "import/resolver": {
+        "webpack": {
+          "config": "build/webpack.base.conf.js"
+        }
+      } 
+    },
+    "ignores": [
+      "test/unit/karma.conf.js",
+      "config/**/*.js",
+      "build/**/*.js"
+    ],
+    "overrides": [
+      {
+        "files": "test/**/*.js",
+        "envs": [
+          "mocha",
+          "jasmine"
+        ],
+        "rules": {
+          "unicorn/filename-case": [
+            "error",
+            {
+              "case": "pascalCase"
+            }
+          ],
+          "max-nested-callbacks": [
+            "error",
+            10
+          ]
+        }
+      }
+    ]
   },
   "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
+    "node": ">= 7.0.0",
+    "npm": ">= 5.0.0"
   },
   "browserslist": [
     "> 1%",
