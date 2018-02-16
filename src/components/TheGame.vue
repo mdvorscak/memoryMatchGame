@@ -32,7 +32,7 @@ import delay from 'delay';
 import Card from '@/components/GameCard';
 import Timer from '@/components/CountUpTimer';
 import Controls from '@/components/TheGameControls';
-import cardProvider from '@/services/cardProvider';
+import cardProvider from '@/services/card-provider';
 
 const startMessage = 'Click a card to begin';
 

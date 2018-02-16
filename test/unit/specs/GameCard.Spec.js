@@ -1,6 +1,5 @@
-import { mount } from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import Card from '@/components/GameCard';
-
 
 describe('Card.vue', () => {
   describe('face down', () => {

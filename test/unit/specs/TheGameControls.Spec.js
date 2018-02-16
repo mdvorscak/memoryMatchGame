@@ -1,6 +1,5 @@
-import { mount } from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import Controls from '@/components/TheGameControls';
-
 
 describe('Controls.vue', () => {
   describe('active game state', () => {
